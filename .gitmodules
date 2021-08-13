@@ -7,3 +7,6 @@
 [submodule "spring-cloud-config-server"]
 	path = spring-cloud-config-server
 	url = https://github.com/krishan5/spring-cloud-config-server.git
+[submodule "currency-exchange-service"]
+	path = currency-exchange-service
+	url = https://github.com/krishan5/currency-exchange-service.git
