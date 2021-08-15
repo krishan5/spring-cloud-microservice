@@ -10,3 +10,6 @@
 [submodule "currency-exchange-service"]
 	path = currency-exchange-service
 	url = https://github.com/krishan5/currency-exchange-service.git
+[submodule "currency-conversion-service"]
+	path = currency-conversion-service
+	url = https://github.com/krishan5/currency-conversion-service.git
