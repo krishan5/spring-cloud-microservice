@@ -13,3 +13,6 @@
 [submodule "currency-conversion-service"]
 	path = currency-conversion-service
 	url = https://github.com/krishan5/currency-conversion-service.git
+[submodule "naming-server"]
+	path = naming-server
+	url = https://github.com/krishan5/naming-server.git
