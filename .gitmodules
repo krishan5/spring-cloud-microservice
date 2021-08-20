@@ -16,3 +16,6 @@
 [submodule "naming-server"]
 	path = naming-server
 	url = https://github.com/krishan5/naming-server.git
+[submodule "api-gateway"]
+	path = api-gateway
+	url = https://github.com/krishan5/api-gateway.git
