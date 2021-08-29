@@ -9,3 +9,5 @@ Here I have added services as submodules. Following are the service's repo :
 5. limits-service : microservice
 6. naming-server : Eureka service registry
 7. spring-cloud-config-server
+
+Resilience4j is implemented in currency-exchange-service
