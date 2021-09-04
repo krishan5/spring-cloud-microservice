@@ -1,0 +1,141 @@
+Docker commands :
+
+1. To run an image but not in detach mode which means it will not be running in background.
+docker run <docker hub repository path>:<tag>
+Eg : docker run /krishan5/microservice:1.0.0.RELEASE
+
+2. To map the container port and hosted port of that container.
+docker run -p <HostPort>:<ContainerPort> <docker hub repository path>:<tag>
+Eg : docker run -p 5000:5000 /krishan5/microservice:1.0.0.RELEASE
+
+3. To run image in detach mode which means it will run in background
+
+docker run -d <docker hub repository path>:<tag>
+Eg : docker run -d /krishan5/microservice:1.0.0.RELEASE
+
+It will retrun container ID eg : j9jqfiqjf9h9h948n9812nn2ru291cnr82un8rn233cr2 
+//then use it to get logs
+Eg : docker logs j9jqfiqjf9h9h948n9812nn2ru291cnr82un8rn233cr2 //it will fetch available logs
+Eg : docker logs -f j9jqfiqjf9h9h948n9812nn2ru291cnr82un8rn233cr2 //it will fetch available logs 
+and also following the latest logs to show them
+
+4. To see which all containers are running
+docker container ls
+
+We can see :
+containerId, image, command, 
+created, status, ports, names
+Eg :
+j9jqfiqjf9h, krishan5/microservice:1.0.0.RELEASE, "sh -c 'java $JAVA_0...", 
+3 minutes ago, Up 3 minutes, 0.0.0.0:5000->5000/tcp, blissful_wing
+
+5. To run same container multiple times >> Just change HostPort in command.
+Eg : docker run -p 5001:5000 /krishan5/microservice:1.0.0.RELEASE
+
+It will up same and another container with 5001 port.
+
+/*********************COMMANDS RELATED TO IMAGE********************************/
+
+6. To see all images present in my machine
+docker image
+
+It will show :
+REPOSITORY, TAG, IMAGE ID, CREATED
+krishan5/microservice, 1.0.0.RELEASE, j9jqfiqjf9h9h94, 2 months ago
+
+7. To see all containers irrespective of status i.e. shows running as well as stoped containers.
+docker container ls -a
+
+8. To stop background running container.
+docker container stop j9jqfiqjf9h
+
+9. To create image of existing image but only with different tag.
+docker image <existingImage>:<existingImageTag> <existingImage>:<newTag>
+docker image krishan5/microservice:1.0.0.RELEASE krishan5/microservice:latest
+
+10. To pull image from repository.
+docker pull <officialImageName>
+
+It will download image from repository and save in local machine.
+
+11. To see history of an image like at what timeline what happens with image.
+docker image history <imageId>
+
+12. To inspect the image like export port, path, endpoint, environment variables, folder structure etc.
+docker image inspect <imageId>
+
+13. To remove image from local machine only.
+docker image remove <imageId>
+
+/*********************COMMANDS RELATED TO CONTAINER********************************/
+
+14. To pause/unpause the container which means you won't be able to access it on browser. 
+Logs can still accessed through docker command.
+docker container pause <containerId>
+docker container unpause <containerId>
+
+15. To inspect the container to see things like current status, created date etc.
+docker container inspect <containerId>
+
+16. To remove all stopped containers.
+docker container prune
+
+17. To stop the container or gracefully shutdown the container.
+docker container stop <containerId>
+
+It will gracefully shutdown the container which means container will take around 10seconds to closing connection pool,
+shutting down the server etc.
+The signal is send is called SIGTERM which means the same explained above.
+stop => SIGTERM => gracefully shutdown
+
+18. To stop te container on the spot without giving any time to shutting down any resource of it.
+docker container kill <containerId>
+
+Here signal is send is called SIGKILL.
+
+19. To restart the container when docker is restarted.
+Step 1 : Run the container with restart policy = always (by default it is set to "no")
+Eg >> docker run -p 5000:5000 -d --restart=always /krishan5/microservice:1.0.0.RELEASE
+Step 2 : Stop the container
+Eg >> docker container stop <containerId>
+Now container is in EXITED state
+Step 3 : When docker will be restarted, then this container (which is started with restart=always) 
+will restarted without running any command.
+
+To not let it restarted again, then run "prune" command like :
+docker container prune
+It will remove this container also.
+
+/***************************OTHER COMMANDS*********************************/
+
+20. To see what event is happening in docker environment like show if any container stopped or started or paused etc.
+docker events
+
+21. To check what is the top process is running in specific container.
+docker top <containerId>
+
+It will return :
+PID, USER, TIME, COMMAND
+3011, root, 0:24, java -Djava.security.egd=file:/dev/./urandom -jar /app.jar
+
+22. To see all stats regarding the containers which are running.
+docker stats
+
+It will return :
+CONTAINER ID, NAME, CPU%, MEM USAGE/LIMIT, MEM%, NET I/O, BLOCK I/O, PIDS
+
+23. How to specify a memory and cpu-quota to a container.
+docker run -p 5000:5000 -m 512m --cpu-quota 50000 -d krishan5/microservice:1.0.0.RELEASE
+
+cpu-quota bydefault is 100,000 = 100%
+we assigned 50000 = 50%
+
+24. To see all things managed by docker daemon.
+docker system df
+
+It will return 2D array :
+TYPE               TOTAL         ACTIVE          SIZE              RECLAIMABLE
+Images             2             1               181.1MB           3MB (78%)
+Containers         4             2               0B                0B
+Local volumes      53            4               1.247GB           1.247B (99%)
+Build cache        0             0               0B                0B
