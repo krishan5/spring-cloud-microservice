@@ -12,3 +12,4 @@ Here I have added services as submodules. Following are the service's repo :
 
 Resilience4j is implemented in currency-exchange-service.
 Zipkin distributed tracing server used by currency-exchange-service, currency-conversion-service, api-gateway.
+Dockerfile is added in currency-exchange-service.
