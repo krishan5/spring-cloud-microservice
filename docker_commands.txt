@@ -139,3 +139,17 @@ Images             2             1               181.1MB           3MB (78%)
 Containers         4             2               0B                0B
 Local volumes      53            4               1.247GB           1.247B (99%)
 Build cache        0             0               0B                0B
+
+/****************************COMMANDS TO BUILD IMAGE AND PUSH TO DOCKER REPOSITORY****************/
+25. To build an image of any application. Go to application and run following command in cmd :
+docker build -t krishan5/currency-exchange-service .
+
+Before that, we should have our docker account and repository there. Example : krishan5 is docker user id 
+and currency-exchange-service is respository name.
+
+This command creates an image which we can find by running "docker image ls" command.
+
+26. To push an image to our docker hub repository.
+docker push krishan5/currency-exchange-service:latest
+
+Any new created image has tag named as "latest".
