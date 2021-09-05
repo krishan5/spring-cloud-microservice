@@ -11,3 +11,4 @@ Here I have added services as submodules. Following are the service's repo :
 7. spring-cloud-config-server
 
 Resilience4j is implemented in currency-exchange-service
+Zipkin distributed tracing server used by currency-exchange-service
