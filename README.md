@@ -10,4 +10,5 @@ Here I have added services as submodules. Following are the service's repo :
 6. naming-server : Eureka service registry
 7. spring-cloud-config-server
 
-Resilience4j is implemented in currency-exchange-service
+Resilience4j is implemented in currency-exchange-service.
+Zipkin distributed tracing server used by currency-exchange-service.
