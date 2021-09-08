@@ -146,8 +146,12 @@ docker build -t krishan5/currency-exchange-service .
 
 Before that, we should have our docker account and repository there. Example : krishan5 is docker user id 
 and currency-exchange-service is respository name.
-
 This command creates an image which we can find by running "docker image ls" command.
+In case it fails with reason "no such file or directory", then make that folder first. It is mentioned in Dockerfile as :
+```
+ARG JAR_FILE=build/libs/*.jar
+COPY ${JAR_FILE} /app.jar
+```
 
 26. To push an image to our docker hub repository.
 docker push krishan5/currency-exchange-service:latest
