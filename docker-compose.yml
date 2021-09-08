@@ -12,12 +12,21 @@ services:
       - naming-server
     environment:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
     
     naming-server:
     image: krishan5/naming-server:latest
     mem_limit: 700m
     ports:
       - "8761:8761"
+    networks:
+      - currency-network
+    
+    zipkin:
+    image: openzipkin/zipkin:latest
+    mem_limit: 700m
+    ports:
+      - "9411:9411"
     networks:
       - currency-network
 
